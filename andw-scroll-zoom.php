@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: ANDW Scroll Zoom
+ * Plugin Name: andW Scroll Zoom
  * Description: 画像が画面に完全に入ったら拡大／縮小するスクロール演出プラグイン
  * Version: 0.01
  * Author: Netservice
