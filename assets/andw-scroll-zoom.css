@@ -1,0 +1,69 @@
+/**
+ * ANDW Scroll Zoom - CSS
+ * スクロール連動拡大/縮小エフェクトのスタイル
+ */
+
+/* CSS変数の初期値定義 */
+:root {
+	--andw-zoom-duration: 400ms;
+	--andw-zoom-easing: cubic-bezier(0.2, 0, 0, 1);
+	--andw-zoom-delay: 0ms;
+	--andw-zoom-from: 0.92;
+	--andw-zoom-to: 1.0;
+}
+
+/* 対象要素の基本設定 */
+.andw-zoom,
+.andw-zoom-group img,
+[data-andw-zoom]:not([data-andw-zoom="off"]) {
+	transition: transform var(--andw-zoom-duration) var(--andw-zoom-easing) var(--andw-zoom-delay);
+	will-change: transform;
+	backface-visibility: hidden;
+	transform-origin: center center;
+}
+
+/* 初期状態（アニメーション前） */
+.andw-zoom-init {
+	transform: scale(var(--andw-zoom-from, 0.92));
+}
+
+/* 発火状態（アニメーション中・後） */
+.andw-zoom-active {
+	transform: scale(var(--andw-zoom-to, 1.0));
+}
+
+/* 推奨ラッパースタイル（CLS回避・overflow対策） */
+.andw-zoom-wrapper {
+	overflow: hidden;
+	display: block;
+}
+
+.andw-zoom-wrapper img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+/* アクセシビリティ対応 - prefers-reduced-motionでアニメ無効 */
+@media (prefers-reduced-motion: reduce) {
+	.andw-zoom,
+	.andw-zoom-group img,
+	[data-andw-zoom]:not([data-andw-zoom="off"]) {
+		transition: none !important;
+		transform: scale(1) !important;
+	}
+
+	.andw-zoom-init,
+	.andw-zoom-active {
+		transform: scale(1) !important;
+	}
+}
+
+/* レスポンシブ対応 - 小画面でのパフォーマンス考慮 */
+@media (max-width: 767px) {
+	.andw-zoom,
+	.andw-zoom-group img,
+	[data-andw-zoom]:not([data-andw-zoom="off"]) {
+		--andw-zoom-duration: 300ms;
+	}
+}
