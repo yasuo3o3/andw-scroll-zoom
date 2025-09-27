@@ -48,6 +48,7 @@
 # Git関連（配布除外）
 .git/ export-ignore
 .gitattributes export-ignore
+.distignore export-ignore
 .gitignore export-ignore
 .github/ export-ignore
 .history/ export-ignore
